@@ -1,4 +1,5 @@
 import { Edit2, Trash2, Calendar, Repeat } from "lucide-react";
+import DueDateBadge from "./DueDateBadge";
 
 const SubscriptionCard = ({ subscription, onEdit, onDelete }) => {
   const getCategoryColor = (category) => {
@@ -78,35 +79,11 @@ const SubscriptionCard = ({ subscription, onEdit, onDelete }) => {
         </div>
 
         {/* Due Date */}
-        <div
-          className={`flex items-center space-x-2 p-3 rounded-lg mb-4 ${
-            isDueSoon(subscription.nextDueDate)
-              ? "bg-orange-50 border border-orange-200"
-              : "bg-gray-50"
-          }`}
-        >
-          <Calendar
-            size={16}
-            className={
-              isDueSoon(subscription.nextDueDate)
-                ? "text-orange-600"
-                : "text-gray-600"
-            }
-          />
-          <span
-            className={`text-sm font-medium ${
-              isDueSoon(subscription.nextDueDate)
-                ? "text-orange-700"
-                : "text-gray-700"
-            }`}
-          >
-            Due {formatDate(subscription.nextDueDate)}
+        <div className="flex items-center space-x-2 p-3 rounded-lg mb-4 bg-gray-50">
+          <Calendar size={16} className="text-gray-600" />
+          <span className="text-sm font-medium text-gray-700">
+            <DueDateBadge dueDate={subscription.nextDueDate} />
           </span>
-          {isDueSoon(subscription.nextDueDate) && (
-            <span className="bg-orange-100 text-orange-700 text-xs px-2 py-0.5 rounded-full ml-auto">
-              Soon
-            </span>
-          )}
         </div>
 
         {/* Notes */}
